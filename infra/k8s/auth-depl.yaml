@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: yarapay/authpod
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: JWT_KEY
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: MONGO_URI
+            - name: CIRCLE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: circle
+                  key: CIRCLE_API_KEY
+            - name: REDIS_HOST
+              value: redis-service
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: nats-secret
+                  key: NATS_URL
+            - name: NATS_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: nats-secret
+                  key: NATS_CLUSTER_ID
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

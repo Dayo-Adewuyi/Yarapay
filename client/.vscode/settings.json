@@ -1,0 +1,28 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".vscode": true,
+    ".next": true,
+    "node_modules": true,
+    ".eslintrc.json": true,
+    ".gitignore": true,
+    "README.md": true,
+    "yarn.lock": true,
+    "package.json": true
+  },
+  "hide-files.files": [
+    ".vscode",
+    ".next",
+    "node_modules",
+    ".eslintrc.json",
+    ".gitignore",
+    "README.md",
+    "yarn.lock",
+    "package.json"
+  ]
+}

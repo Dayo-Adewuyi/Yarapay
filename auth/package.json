@@ -1,0 +1,51 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts",
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@metamask/sdk": "^0.2.2",
+    "@yarapay/tools": "^1.0.6",
+    "axios": "^1.4.0",
+    "bullmq": "^3.12.0",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^6.1.5",
+    "hpp": "^0.2.3",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0",
+    "mongoose-update-if-current": "^1.4.0",
+    "morgan": "^1.10.0",
+    "node-nats-streaming": "^0.3.2",
+    "npm": "^9.6.6",
+    "ts-node-dev": "^2.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/cookie-session": "^2.0.44",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/hpp": "^0.2.2",
+    "@types/jest": "^29.5.1",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/morgan": "^1.9.4",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^9.0.1",
+    "jest": "^29.5.0",
+    "mongodb-memory-server": "^8.12.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0"
+  }
+}

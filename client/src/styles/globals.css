@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn-blue {
+    @apply bg-[#0B51FF] hover:bg-[#193989] text-white rounded focus:outline-none trans
+}
+.btn-black{
+    @apply bg-[#000000] hover:bg-[#292727] text-white rounded focus:outline-none trans
+}
+.btn-blue-big {
+    @apply bg-[#0B51FF] hover:bg-[#193989] text-white rounded py-2 lg:py-4 focus:outline-none trans
+}
+
+.trans {
+    @apply transition duration-300 ease-in-out
+}
+
+.text-yara-blue {
+    @apply text-[#0B51FF]
+}
+
+.form-bg {
+    background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 48.4561px 129.216px rgba(162, 176, 195, 0.3);
+            backdrop-filter: blur(64.6082px);
+}

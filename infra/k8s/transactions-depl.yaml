@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transactions-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transactions
+  template:
+    metadata:
+      labels:
+        app: transactions
+    spec:
+      containers:
+        - name: transactions
+          image: yarapay/transactions
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: JWT_KEY
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: MONGO_URI
+            - name: CIRCLE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: circle
+                  key: CIRCLE_API_KEY
+            - name: REDIS_HOST
+              value: redis-service
+            - name: CIRCLE_ACCOUNT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: master-account
+                  key: CIRCLE_ACCOUNT_ID
+            - name: PAYSTACK_TEST_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paystack
+                  key: PAYSTACK_TEST_API_KEY
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: nats-secret
+                  key: NATS_URL
+            - name: NATS_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: nats-secret
+                  key: NATS_CLUSTER_ID
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transactions-service
+spec:
+  selector:
+    app: transactions
+  ports:
+    - name: transactions
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

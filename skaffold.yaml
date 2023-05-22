@@ -1,0 +1,36 @@
+apiVersion: skaffold/v4beta2
+kind: Config
+build:
+  artifacts:
+    - image: yarapay/authpod
+      context: auth
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yarapay/client
+      context: client
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: yarapay/transactions
+      context: transactions
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+    - ./infra/k8s-dev/*
+deploy:
+  kubectl: {}
