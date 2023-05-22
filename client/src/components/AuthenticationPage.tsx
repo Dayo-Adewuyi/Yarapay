@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../common/Input";
+import Input from "./common/Input";
 import { useRouter } from "next/router";
 
 export default function SignInPage() {

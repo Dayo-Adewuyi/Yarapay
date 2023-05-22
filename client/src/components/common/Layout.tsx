@@ -6,9 +6,7 @@ const Layout = ({ children }: any) => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen overflow-y-scroll py-4">
-      {children}
-      </div>
+      <div className="min-h-screen py-4">{children}</div>
       <Footer />
     </>
   );
